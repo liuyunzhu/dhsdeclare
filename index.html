@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DHS Travel Declaration</title>
+
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.css" /> 
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> 
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jquery.mobile.datebox.min.js"></script>
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i8n/jquery.mobile.datebox.i8n.en.js"></script>
+</head>
+
+<body>
+	{% if contact %}
+<div data-role="page" id="top" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>DHS Travel Declaration Form</h1>
+			</div>
+			<div data-role="content">
+				<h5> {{ greeting }} <a href="{{ url }}">{{ url_linktext }}</a></h5>
+				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+<li data-role="list-divider">My declarations</li>
+     	              <li><a href="#view" data-transition="slide">View</a></li>
+     	              <li><a href="#edit" data-transition="slide">Edit</a></li>
+    	    </div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+     	        <h1>&copy; Copyright LYZ</h1>
+			</div>
+        </div> 
+        
+        <div data-role="page" id="view" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>DHS Travel Declaration Form</h1>
+			</div>
+            <div data-role="content">
+				<h5>  {{ greeting }} <a href="{{ url }}">{{ url_linktext }}</a></h5>
+				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+                    <h3>First declaration</h3>
+                         <p>Date from:  {{ contact.datefrom1 }} </p> <br />
+                         <p>Date to: {{ contact.dateto1 }} </p><br />
+						 <p>Visiting country: {{ contact.country1 }} </p><br />
+                         <p>Transit: {{ contact.transit1 }} </p><br /><br />
+                    <h3>Second declaration</h3>
+                         <p>Date from:  {{ contact.datefrom2 }} </p> <br />
+                         <p>Date to: {{ contact.dateto2 }} </p><br />
+						 <p>Visiting country: {{ contact.country2 }} </p><br />
+                         <p>Transit: {{ contact.transit2 }} </p><br /><br />              
+					<h3>Third declaration</h3>
+                         <p>Date from:  {{ contact.datefrom2 }} </p> <br />
+                         <p>Date to: {{ contact.dateto2 }} </p><br />
+						 <p>Visiting country: {{ contact.country2 }} </p><br />
+                         <p>Transit: {{ contact.transit2 }} </p><br /><br />
+			</div>
+
+			<div data-role="footer" data-position="fixed" data-theme="b">
+
+				<h1>&copy; Copyright LYZ</h1>
+			</div>
+        </div>    		
+        
+        
+		 <div data-role="page" id="edit" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>DHS Travel Declaration Form</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<h5>  {{ greeting }} <a href="{{ url }}">{{ url_linktext }}</a></h5>
+                Not going overseas? Leave the form blank and save.<br /><br />
+				<b>First declaration</b>
+					<form action="/update" method="post">
+						<label for="date">Date from:</label><br />
+                        <input type="date" name="datefrom1" id="datefrom1" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />
+
+                        <label for="date">Date to:</label><br />
+                        <input type="date" name="dateto1" id="dateto1" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />	
+                            
+                        <label for="text">Visiting country:</label>
+                        <input id="country1" name="country1" value=""/>		
+                            
+                        <label for="text">Transit country: </label>
+                        <input id="transit1" name="transit1" value="" placeholder="leave blank if none" />
+
+				<br /><br /><b>Second declaration</b><br />
+						<label for="date">Date from:</label><br />
+                        <input type="date" name="datefrom2" id="datefrom2" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />
+
+                        <label for="date">Date to:</label><br />
+                        <input type="date" name="dateto2" id="dateto2" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />	
+                            
+                        <label for="text">Visiting country:</label>
+                        <input id="country2" name="country2" value="" />		
+                            
+                        <label for="text">Transit country: </label>
+                        <input id="transit2" name="transit2" value="" placeholder="leave blank if none" />
+                        </form> 
+
+				<br /><br/ ><b>Third declaration</b><br />
+						<label for="date">Date from:</label><br />
+                        <input type="date" name="datefrom3" id="datefrom3" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />
+
+                        <label for="date">Date to:</label><br />
+                        <input type="date" name="dateto3" id="dateto3" data-role="datebox" data-options='{"mode": "calbox", "fullScreen": true}'/><br />
+                            
+                        <label for="text">Visiting country:</label>
+                        <input id="country3" name="country3" value="" />		
+                            
+                        <label for="text">Transit country: </label>
+                        <input id="transit3" name="transit3" value="" placeholder="leave blank if none" />
+
+                        <input type="submit" id="update" name="update" value="Save">
+						
+                   </form> 
+                  </div>
+                		
+                <div data-role="footer"  data-theme="b">
+                    <h1>&copy; Copyright LYZ</h1>
+                </div>
+    
+		{% else %}
+<p>You need to sign in.</p>
+		{% endif %}
+
+</body>
+</html>
